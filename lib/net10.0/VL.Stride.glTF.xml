@@ -4,5 +4,37 @@
         <name>VL.Stride.glTF</name>
     </assembly>
     <members>
+        <member name="T:VL.Stride.glTF.Core.GltfGeometry">
+            <summary>Holds the CPU side mesh data of one glTF primitive or of one merged group.</summary>
+        </member>
+        <member name="P:VL.Stride.glTF.Core.GltfGeometry.Vertices">
+            <summary>The interleaved vertex data.</summary>
+        </member>
+        <member name="P:VL.Stride.glTF.Core.GltfGeometry.Indices">
+            <summary>The indices of the triangle list.</summary>
+        </member>
+        <member name="P:VL.Stride.glTF.Core.GltfGeometry.TexCoordCountInFile">
+            <summary>The number of TEXCOORD_n keys in the file, before the limit of 10 is applied.</summary>
+        </member>
+        <member name="T:VL.Stride.glTF.Core.VertexLayout">
+            <summary>Builds the vertex declaration and the interleaved vertex buffer of a glTF primitive.</summary>
+        </member>
+        <member name="M:VL.Stride.glTF.Core.VertexLayout.Create(System.Boolean,System.Int32,System.Boolean)">
+            <summary>Creates a vertex declaration in the element order of the Stride importer.</summary>
+            <param name="hasTangent">Set to true to add a TANGENT element.</param>
+            <param name="texCoordCount">The number of TEXCOORD elements. The value is 0 to <see cref="F:VL.Stride.glTF.Core.VertexLayout.MaxTexCoordCount"/>.</param>
+            <param name="hasColor">Set to true to add a COLOR element.</param>
+        </member>
+        <member name="M:VL.Stride.glTF.Core.VertexLayout.Interleave(Stride.Graphics.VertexDeclaration,System.ReadOnlySpan{Stride.Core.Mathematics.Vector3},System.ReadOnlySpan{Stride.Core.Mathematics.Vector3},System.ReadOnlySpan{Stride.Core.Mathematics.Vector4},System.Collections.Generic.IReadOnlyList{Stride.Core.Mathematics.Vector2[]},System.ReadOnlySpan{Stride.Core.Mathematics.Vector4})">
+            <summary>Writes the source data into one interleaved vertex buffer.</summary>
+            <remarks>The declaration selects the data. Source data that the declaration does not contain is ignored.</remarks>
+            <param name="declaration">The vertex declaration.</param>
+            <param name="positions">The positions. The length gives the vertex count.</param>
+            <param name="normals">The normals.</param>
+            <param name="tangents">The tangents.</param>
+            <param name="texCoords">One array per texture coordinate set.</param>
+            <param name="colors">The vertex colors.</param>
+            <exception cref="T:System.ArgumentException">The source data of an element of the declaration is missing.</exception>
+        </member>
     </members>
 </doc>
