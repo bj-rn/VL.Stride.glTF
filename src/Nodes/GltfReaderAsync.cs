@@ -78,6 +78,8 @@ public sealed class GltfReaderAsync : IDisposable
         {
             if (cachedModel is not null)
                 ModelBuilder.ReleaseGraphicsResources(cachedModel);
+            cachedModel = null;
+            cachedTexcoordCount = 0;
 
             cachedModel = ModelBuilder.Build(services.Device, result);
 
