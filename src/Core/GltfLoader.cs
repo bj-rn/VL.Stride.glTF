@@ -62,6 +62,10 @@ public static class GltfLoader
         var determinant = world.Determinant();
         var indices = ReadIndices(primitive, reverseWinding: determinant >= 0);
 
+        // A zero byte index buffer fails on the GPU.
+        if (indices.Length == 0)
+            return null;
+
         var normalAccessor = primitive.GetVertexAccessor("NORMAL");
         var normals = normalAccessor is not null
             ? ReadVector3(normalAccessor)

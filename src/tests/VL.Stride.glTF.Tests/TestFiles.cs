@@ -62,4 +62,28 @@ internal static class TestFiles
 
         return path;
     }
+
+    /// <summary>Writes a triangle primitive with two vertices and no indices, which has zero triangles.</summary>
+    /// <returns>The full path of the saved glb file.</returns>
+    public static string WriteStripWithTwoVertices(string directory, string fileName)
+    {
+        var positions = new[] { new Vector3(0, 0, 0), new Vector3(1, 0, 0) };
+        var normals = new[] { Vector3.UnitZ, Vector3.UnitZ };
+
+        var model = ModelRoot.CreateModel();
+        var mesh = model.CreateMesh("Strip");
+        var primitive = mesh.CreatePrimitive();
+        primitive.WithVertexAccessor("POSITION", positions);
+        primitive.WithVertexAccessor("NORMAL", normals);
+        primitive.DrawPrimitiveType = PrimitiveType.TRIANGLES;
+
+        var scene = model.UseScene("Scene");
+        var node = scene.CreateNode("StripNode");
+        node.Mesh = mesh;
+
+        var path = Path.Combine(directory, fileName);
+        model.SaveGLB(path);
+
+        return path;
+    }
 }

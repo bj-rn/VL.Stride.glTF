@@ -130,6 +130,16 @@ public class GltfLoaderTests
     }
 
     [Test]
+    public void SkipsPrimitiveWithoutTriangles()
+    {
+        var path = TestFiles.WriteStripWithTwoVertices(_directory, "strip.glb");
+
+        var geometries = GltfLoader.Load(path, 1, Vector3.Zero);
+
+        Assert.That(geometries, Is.Empty);
+    }
+
+    [Test]
     public void UsesMaterialIndex()
     {
         var first = TestFiles.WriteQuad(_directory, "one.glb", 1, Matrix4x4.Identity, materialCount: 1);
