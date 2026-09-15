@@ -1,4 +1,4 @@
-// Tests for the poll-based async helper behind the async mesh nodes.
+// Tests for the poll based helper behind the async reader node.
 
 using System.Diagnostics;
 using NUnit.Framework;

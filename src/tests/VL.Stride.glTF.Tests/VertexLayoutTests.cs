@@ -9,7 +9,7 @@ namespace VL.Stride.glTF.Tests;
 public class VertexLayoutTests
 {
     [Test]
-    public void Create_WithNineTexCoords()
+    public void CreatesNineTexCoordElements()
     {
         var declaration = VertexLayout.Create(hasTangent: false, texCoordCount: 9, hasColor: false);
 
@@ -25,7 +25,7 @@ public class VertexLayoutTests
     }
 
     [Test]
-    public void Create_WithMaxTexCoords()
+    public void CreatesTenTexCoordElements()
     {
         var declaration = VertexLayout.Create(hasTangent: false, texCoordCount: VertexLayout.MaxTexCoordCount, hasColor: false);
 
@@ -33,21 +33,21 @@ public class VertexLayoutTests
     }
 
     [Test]
-    public void Create_WithTooManyTexCoords_Throws()
+    public void ThrowsForElevenTexCoords()
     {
         Assert.Throws<ArgumentOutOfRangeException>(
             () => VertexLayout.Create(hasTangent: false, texCoordCount: VertexLayout.MaxTexCoordCount + 1, hasColor: false));
     }
 
     [Test]
-    public void Create_WithNegativeTexCoordCount_Throws()
+    public void ThrowsForNegativeTexCoordCount()
     {
         Assert.Throws<ArgumentOutOfRangeException>(
             () => VertexLayout.Create(hasTangent: false, texCoordCount: -1, hasColor: false));
     }
 
     [Test]
-    public void Create_WithTangentAndColor()
+    public void CreatesTangentAndColorElements()
     {
         var declaration = VertexLayout.Create(hasTangent: true, texCoordCount: 2, hasColor: true);
 
@@ -57,7 +57,7 @@ public class VertexLayoutTests
     }
 
     [Test]
-    public void Interleave_RoundTrip()
+    public void InterleavesAndReadsBack()
     {
         const int count = 3;
         var declaration = VertexLayout.Create(hasTangent: true, texCoordCount: 2, hasColor: true);
@@ -112,7 +112,7 @@ public class VertexLayoutTests
     }
 
     [Test]
-    public void Interleave_WithMissingTangents_Throws()
+    public void ThrowsForMissingTangents()
     {
         var declaration = VertexLayout.Create(hasTangent: true, texCoordCount: 1, hasColor: false);
 

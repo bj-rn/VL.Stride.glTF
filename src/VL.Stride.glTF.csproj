@@ -14,7 +14,7 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <!-- The tests project sits under this folder now. Exclude it so its files do not compile twice. -->
+    <!-- The test project sits under this folder. Exclude it, so its files do not compile twice. -->
     <Compile Remove="tests\**" />
     <EmbeddedResource Remove="tests\**" />
     <None Remove="tests\**" />

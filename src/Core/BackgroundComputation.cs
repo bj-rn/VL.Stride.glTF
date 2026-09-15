@@ -1,4 +1,4 @@
-// Poll-based background computation helper for the async mesh nodes.
+// Poll based background computation for the async reader node.
 //
 // The class runs at most one task at a time.
 // When the task finishes, the caller adopts the result.

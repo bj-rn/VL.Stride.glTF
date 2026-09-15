@@ -16,7 +16,7 @@ public sealed class GltfReaderAsync : IDisposable
     private StrideModel? cachedModel;
     private int cachedTexcoordCount;
     private int reloadCount;
-    private bool lastReload;
+    private bool previousReload;
 
     public GltfReaderAsync(NodeContext nodeContext) => services = new GameServices(nodeContext);
 
@@ -33,9 +33,9 @@ public sealed class GltfReaderAsync : IDisposable
         bool reload = false)
     {
         // Reload is a bang. Only a rising edge starts a new load.
-        if (reload && !lastReload)
+        if (reload && !previousReload)
             reloadCount++;
-        lastReload = reload;
+        previousReload = reload;
 
         var currentPath = path?.Value;
 
