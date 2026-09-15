@@ -5,14 +5,12 @@ This library loads glTF 2.0 files into VL.Stride and keeps every UV set, up to 1
 ## Requirements
 
 - vvvv gamma 8.0, preview 2026.8.0-0123 or later
-- Stride 4.3.0.2507
 - .NET 10 SDK, for building from source
 
 ## Install
 
-Install the package via the command line in vvvv:
+Install via the vvvv package manager (`CTRL + F3`)
 
-    nuget install VL.Stride.glTF -pre
 
 See the [guide on managing NuGet packages](https://thegraybook.vvvv.org/reference/hde/managing-nugets.html) for details.
 
@@ -104,8 +102,12 @@ Start vvvv with `--package-repositories "D:\_Dev\_vl-libs"` to use this reposito
 
 ## Credits
 
-- SharpGLTF by Vicente Penades (MIT).
-- `BackgroundComputation` and the game service helper come from VL.Stride.Text3d (MIT).
+- [SharpGLTF](https://github.com/vpenades/SharpGLTF) by Vicente Penades (MIT).
+- `BackgroundComputation` and the game service helper come from [VL.Stride.Text3d](https://github.com/bj-rn/VL.Stride.Text3d) (MIT).
+
+## Sponsoring
+
+Initial development was sponsored by [Refik Anadol Studio](https://refikanadolstudio.com/).
 
 ## License
 
