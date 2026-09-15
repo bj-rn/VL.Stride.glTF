@@ -4,6 +4,14 @@
         <name>VL.Stride.glTF</name>
     </assembly>
     <members>
+        <member name="T:VL.Stride.glTF.Core.GeometryMerger">
+            <summary>Joins geometries that share the material and the vertex declaration into one geometry.</summary>
+        </member>
+        <member name="M:VL.Stride.glTF.Core.GeometryMerger.Merge(System.Collections.Generic.IReadOnlyList{VL.Stride.glTF.Core.GltfGeometry})">
+            <summary>Merges the geometries per material index and vertex declaration.</summary>
+            <remarks>The result keeps the order of the first appearance of each group. A group with one member passes through unchanged.</remarks>
+            <param name="geometries">The geometries to merge.</param>
+        </member>
         <member name="T:VL.Stride.glTF.Core.GltfGeometry">
             <summary>Holds the CPU side mesh data of one glTF primitive or of one merged group.</summary>
         </member>
