@@ -7,7 +7,7 @@ internal static class TestPaths
     public static string RepoRoot { get; } = FindRepoRoot();
 
     /// <summary>The folder with the real test assets.</summary>
-    public static string AssetsDirectory => Path.Combine(RepoRoot, "tests", "assets");
+    public static string AssetsDirectory => Path.Combine(RepoRoot, "src", "tests", "assets");
 
     private static string FindRepoRoot()
     {

@@ -5,7 +5,7 @@ using VL.Stride.glTF.Core;
 
 namespace VL.Stride.glTF.Tests;
 
-/// <summary>Loads the real Blender export in <c>tests/assets</c> with the production loader.</summary>
+/// <summary>Loads the real Blender export in <c>src/tests/assets</c> with the production loader.</summary>
 [TestFixture]
 public class RealAssetTests
 {

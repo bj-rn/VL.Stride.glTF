@@ -17,6 +17,6 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\VL.Stride.glTF.csproj" />
+    <ProjectReference Include="..\..\VL.Stride.glTF.csproj" />
   </ItemGroup>
 </Project>
