@@ -6,7 +6,8 @@
     <Nullable>enable</Nullable>
     <!-- Keep in sync with deployment\VL.Stride.glTF.nuspec -->
     <Version>0.1.0</Version>
-    <OutputPath>..\lib\net10.0\</OutputPath>
+    <!-- Only Release builds go to lib. Debug builds from dotnet test stay in bin. -->
+    <OutputPath Condition="'$(Configuration)'=='Release'">..\lib\net10.0\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <!-- vvvv reads pin and node tooltips from the XML documentation file -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
