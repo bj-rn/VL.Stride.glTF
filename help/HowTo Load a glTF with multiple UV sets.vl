@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="GLTFHELPDoc00000000001" LanguageVersion="2026.8.0" Version="0.128">
+  <NugetDependency Id="GLTFHELPDepCoreLib0001" Location="VL.CoreLib" Version="2026.8.0" />
+  <NugetDependency Id="GLTFHELPDepStride00001" Location="VL.Stride" Version="2026.8.0" />
+  <NugetDependency Id="GLTFHELPDepAssets00001" Location="VL.HelpAssets" Version="1.0.0" />
+  <NugetDependency Id="GLTFHELPDepGltf0000001" Location="VL.Stride.glTF" Version="0.0.0" />
+  <Patch Id="GLTFHELPPatch000000001">
+    <Canvas Id="GLTFHELPCanvas00000001" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <Node Name="Application" Bounds="100,100" Id="GLTFHELPApp00000000001">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <FullNameCategoryReference ID="Primitive" />
+      </p:NodeReference>
+      <Patch Id="GLTFHELPAppPatch000001">
+        <Canvas Id="GLTFHELPAppCanvas00001" CanvasType="Group">
+          <Pad Id="GLTFHELPTitle000000001" Bounds="100,40,700,25" ShowValueBox="true" isIOBox="true" Value="GltfReader loads a glTF 2.0 file and keeps every UV set the file contains, up to 10.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">12</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GLTFHELPNote0000000001" Bounds="100,80,700,41" ShowValueBox="true" isIOBox="true" Value="The built in FileModel node imports through Assimp and drops every UV set after the 8th. Blender writes all UV maps as TEXCOORD_n attributes into glTF files.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GLTFHELPNote0000000002" Bounds="100,160,260,19" ShowValueBox="true" isIOBox="true" Value="Set the path to a .glb or .gltf file.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GLTFHELPPath0000000001" Comment="Path" Bounds="100,190,260,15" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="IO" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Path" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="100,240,125,19" Id="GLTFHELPGltf0000000001">
+            <p:NodeReference LastCategoryFullName="Stride.Models" LastDependency="VL.Stride.glTF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="GltfReader" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="GLTFHELPGltfPath000001" Name="Path" Kind="InputPin" />
+            <Pin Id="GLTFHELPGltfScale00001" Name="Import Scale" Kind="InputPin" />
+            <Pin Id="GLTFHELPGltfPivot00001" Name="Pivot Position" Kind="InputPin" />
+            <Pin Id="GLTFHELPGltfMerge00001" Name="Merge Meshes" Kind="InputPin" />
+            <Pin Id="GLTFHELPGltfReload0001" Name="Reload" Kind="InputPin" />
+            <Pin Id="GLTFHELPGltfModel00001" Name="Model" Kind="OutputPin" />
+            <Pin Id="GLTFHELPGltfCount00001" Name="Texcoord Count" Kind="OutputPin" />
+          </Node>
+          <Pad Id="GLTFHELPCount000000001" Comment="Texcoord Count" Bounds="260,290,60,15" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Integer32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="GLTFHELPNote0000000003" Bounds="340,285,360,41" ShowValueBox="true" isIOBox="true" Value="Texcoord Count is the number of UV sets in the file. Stride uses at most 10 of them. A value above 10 means that sets were dropped.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GLTFHELPAsset000000001" Comment="Asset" Bounds="500,160,199,15" ShowValueBox="true" isIOBox="true" Value="Scaffolding.jpg">
+            <p:TypeAnnotation LastCategoryFullName="System.Help" LastDependency="VL.HelpAssets.vl">
+              <Choice Kind="TypeFlag" Name="ImageAsset" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="500,190,69,19" Id="GLTFHELPImage000000001">
+            <p:NodeReference LastCategoryFullName="System.Help" LastDependency="VL.HelpAssets.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="ImageAsset" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPImageAsset0001" Name="Asset" Kind="InputPin" />
+            <Pin Id="GLTFHELPImagePath00001" Name="File Path" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="500,240,125,19" Id="GLTFHELPTex00000000001">
+            <p:NodeReference LastCategoryFullName="Stride.Textures" LastDependency="VL.Stride.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="TextureReader" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPTexPath0000001" Name="File Path" Kind="InputPin" />
+            <Pin Id="GLTFHELPTexOut00000001" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="GLTFHELPNote0000000004" Bounds="500,340,360,55" ShowValueBox="true" isIOBox="true" Value="Texcoord Index selects the UV set that the material samples. Texcoord0 is the first set, Texcoord9 the tenth. Change it on the pin to see the other layouts.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="500,400,185,19" Id="GLTFHELPMat00000000001">
+            <p:NodeReference LastCategoryFullName="Stride.Materials" LastDependency="VL.Stride.Rendering.ShaderFX.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="TextureMaterial" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPMatTex00000001" Name="Texture" Kind="InputPin" />
+            <Pin Id="GLTFHELPMatTc000000001" Name="Texcoord Index" Kind="InputPin" DefaultValue="Texcoord0" />
+            <Pin Id="GLTFHELPMatOut00000001" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="100,460,145,19" Id="GLTFHELPEntity00000001">
+            <p:NodeReference LastCategoryFullName="Stride.Models" LastDependency="VL.Stride.Engine.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="ModelEntity" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPEntityMod00001" Name="Model" Kind="InputPin" />
+            <Pin Id="GLTFHELPEntityMat00001" Name="Material" Kind="InputPin" />
+            <Pin Id="GLTFHELPEntityEnt00001" Name="Entity" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="500,460,185,19" Id="GLTFHELPLight000000001">
+            <p:NodeReference LastCategoryFullName="Stride.Lights" LastDependency="VL.Stride.Engine.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="DirectionalLight" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPLightEnt000001" Name="Entity" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="100,530,546,19" Id="GLTFHELPRoot0000000001">
+            <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.Engine.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
+              <Choice Kind="ProcessAppFlag" Name="RootScene" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPRootChild00001" Name="Child" Kind="InputPin" />
+            <Pin Id="GLTFHELPRootChild00002" Name="Child 2" Kind="InputPin" />
+            <Pin Id="GLTFHELPRootOut0000001" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="100,600,245,19" Id="GLTFHELPWin00000000001">
+            <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.Engine.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPWinBounds00001" Name="Bounds" Kind="InputPin" DefaultValue="1000, 100, 800, 600">
+              <p:TypeAnnotation LastCategoryFullName="2D" LastDependency="CoreLibBasics.vl">
+                <Choice Kind="TypeFlag" Name="Rectangle" />
+              </p:TypeAnnotation>
+            </Pin>
+            <Pin Id="GLTFHELPWinInput000001" Name="Input" Kind="InputPin" />
+          </Node>
+        </Canvas>
+        <Patch Id="GLTFHELPCreate00000001" Name="Create" />
+        <Patch Id="GLTFHELPUpdate00000001" Name="Update" />
+        <ProcessDefinition Id="GLTFHELPProcDef0000001">
+          <Fragment Id="GLTFHELPFrag0000000001" Patch="GLTFHELPCreate00000001" Enabled="true" />
+          <Fragment Id="GLTFHELPFrag0000000002" Patch="GLTFHELPUpdate00000001" Enabled="true" />
+        </ProcessDefinition>
+        <Link Id="GLTFHELPLink0000000001" Ids="GLTFHELPPath0000000001,GLTFHELPGltfPath000001" />
+        <Link Id="GLTFHELPLink0000000002" Ids="GLTFHELPGltfCount00001,GLTFHELPCount000000001" />
+        <Link Id="GLTFHELPLink0000000003" Ids="GLTFHELPAsset000000001,GLTFHELPImageAsset0001" />
+        <Link Id="GLTFHELPLink0000000004" Ids="GLTFHELPImagePath00001,GLTFHELPTexPath0000001" />
+        <Link Id="GLTFHELPLink0000000005" Ids="GLTFHELPTexOut00000001,GLTFHELPMatTex00000001" />
+        <Link Id="GLTFHELPLink0000000006" Ids="GLTFHELPMatOut00000001,GLTFHELPEntityMat00001" />
+        <Link Id="GLTFHELPLink0000000007" Ids="GLTFHELPGltfModel00001,GLTFHELPEntityMod00001" />
+        <Link Id="GLTFHELPLink0000000008" Ids="GLTFHELPEntityEnt00001,GLTFHELPRootChild00001" />
+        <Link Id="GLTFHELPLink0000000009" Ids="GLTFHELPLightEnt000001,GLTFHELPRootChild00002" />
+        <Link Id="GLTFHELPLink0000000010" Ids="GLTFHELPRootOut0000001,GLTFHELPWinInput000001" />
+      </Patch>
+    </Node>
+  </Patch>
+</Document>
