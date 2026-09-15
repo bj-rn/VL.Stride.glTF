@@ -95,5 +95,18 @@
             <param name="mergeMeshes">Combines primitives with the same material and vertex layout into one mesh.</param>
             <param name="reload">Loads the file again.</param>
         </member>
+        <member name="T:VL.Stride.glTF.Nodes.GltfReaderAsync">
+            <summary>Loads a glTF 2.0 model from disk on a background thread and keeps every UV set the file contains, up to 10. Outputs the last loaded model while a new one loads.</summary>
+        </member>
+        <member name="M:VL.Stride.glTF.Nodes.GltfReaderAsync.Update(Stride.Rendering.Model@,System.Int32@,System.Boolean@,VL.Lib.IO.Path,System.Single,Stride.Core.Mathematics.Vector3,System.Boolean,System.Boolean)">
+            <param name="model">The last loaded model. Null while no file is set.</param>
+            <param name="texcoordCount">The number of UV sets found in the file. Stride uses at most 10 of them.</param>
+            <param name="isLoading">True while a file loads in the background.</param>
+            <param name="path">The .gltf or .glb file.</param>
+            <param name="importScale">Scale applied to all positions.</param>
+            <param name="pivotPosition">Subtracted from all positions before the scale.</param>
+            <param name="mergeMeshes">Combines primitives with the same material and vertex layout into one mesh.</param>
+            <param name="reload">Loads the file again.</param>
+        </member>
     </members>
 </doc>
