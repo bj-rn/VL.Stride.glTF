@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Stride.Core.Mathematics;
 using VL.Stride.glTF.Core;
 using Matrix4x4 = System.Numerics.Matrix4x4;
+using PrimitiveType = SharpGLTF.Schema2.PrimitiveType;
 
 namespace VL.Stride.glTF.Tests;
 
@@ -147,6 +148,87 @@ public class GltfLoaderTests
 
         Assert.That(GltfLoader.Load(first, 1, Vector3.Zero).Single().MaterialIndex, Is.EqualTo(0));
         Assert.That(GltfLoader.Load(second, 1, Vector3.Zero).Single().MaterialIndex, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void ReadsVertexColors()
+    {
+        var path = TestFiles.WriteQuad(_directory, "quad.glb", 1, Matrix4x4.Identity, withColors: true);
+
+        var geometry = GltfLoader.Load(path, 1, Vector3.Zero).Single();
+
+        Assert.That(geometry.Declaration.VertexElements.Count(e => e.SemanticName == "COLOR"), Is.EqualTo(1));
+        Assert.That(Read<Vector4>(geometry, "COLOR", 2), Is.EqualTo(new Vector4(0.5f, 0.5f, 0.75f, 1)));
+    }
+
+    [Test]
+    public void NegatesTangentHandednessForMirroredNode()
+    {
+        var path = TestFiles.WriteQuad(_directory, "quad.glb", 1, Matrix4x4.CreateScale(-1, 1, 1), withTangents: true);
+
+        var geometry = GltfLoader.Load(path, 1, Vector3.Zero).Single();
+
+        Assert.That(geometry.Declaration.VertexElements.Count(e => e.SemanticName == "TANGENT"), Is.EqualTo(1));
+        var tangent = Read<Vector4>(geometry, "TANGENT", 0);
+        AssertNear(new Vector3(tangent.X, tangent.Y, tangent.Z), new Vector3(-0.7071068f, 0.7071068f, 0));
+        Assert.That(tangent.W, Is.EqualTo(-1));
+    }
+
+    [Test]
+    public void KeepsTangentHandednessForNormalNode()
+    {
+        var path = TestFiles.WriteQuad(_directory, "quad.glb", 1, Matrix4x4.Identity, withTangents: true);
+
+        var geometry = GltfLoader.Load(path, 1, Vector3.Zero).Single();
+
+        var tangent = Read<Vector4>(geometry, "TANGENT", 0);
+        AssertNear(new Vector3(tangent.X, tangent.Y, tangent.Z), new Vector3(0.7071068f, 0.7071068f, 0));
+        Assert.That(tangent.W, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void LoadsTriangleStrip()
+    {
+        var path = TestFiles.WriteQuad(_directory, "quad.glb", 1, Matrix4x4.Identity, mode: PrimitiveType.TRIANGLE_STRIP);
+
+        var geometry = GltfLoader.Load(path, 1, Vector3.Zero).Single();
+
+        Assert.That(geometry.Indices, Has.Length.EqualTo(6));
+        Assert.That(geometry.Indices[..3], Is.EqualTo(new[] { 0, 3, 1 }));
+    }
+
+    [Test]
+    public void LoadsTriangleFan()
+    {
+        var path = TestFiles.WriteQuad(_directory, "quad.glb", 1, Matrix4x4.Identity, mode: PrimitiveType.TRIANGLE_FAN);
+
+        var geometry = GltfLoader.Load(path, 1, Vector3.Zero).Single();
+
+        Assert.That(geometry.Indices, Has.Length.EqualTo(6));
+        Assert.That(geometry.Indices[..3], Is.EqualTo(new[] { 0, 2, 1 }));
+    }
+
+    [Test]
+    public void LoadsNonIndexedTriangles()
+    {
+        var path = TestFiles.WriteQuad(_directory, "quad.glb", 1, Matrix4x4.Identity, indexed: false);
+
+        var geometry = GltfLoader.Load(path, 1, Vector3.Zero).Single();
+
+        Assert.That(geometry.Indices, Has.Length.EqualTo(6));
+        Assert.That(geometry.Indices[..3], Is.EqualTo(new[] { 0, 2, 1 }));
+    }
+
+    [Test]
+    public void AppliesParentTransformsAndInstancesMeshes()
+    {
+        var path = TestFiles.WriteNodeTree(_directory, "tree.glb");
+
+        var geometries = GltfLoader.Load(path, 1, Vector3.Zero);
+
+        Assert.That(geometries, Has.Count.EqualTo(2));
+        AssertNear(Read<Vector3>(geometries[0], "POSITION", 0), new Vector3(1, 0, 5));
+        AssertNear(Read<Vector3>(geometries[1], "POSITION", 0), new Vector3(10, 0, 0));
     }
 
     /// <summary>Reads one element of one vertex from the interleaved vertex data.</summary>
