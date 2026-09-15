@@ -71,5 +71,17 @@
             <param name="colors">The vertex colors.</param>
             <exception cref="T:System.ArgumentException">The source data of an element of the declaration is missing.</exception>
         </member>
+        <member name="T:VL.Stride.glTF.Nodes.GltfReader">
+            <summary>Loads a glTF 2.0 model from disk and keeps every UV set the file contains, up to 10. Blocks the frame while it loads.</summary>
+        </member>
+        <member name="M:VL.Stride.glTF.Nodes.GltfReader.Update(Stride.Rendering.Model@,System.Int32@,VL.Lib.IO.Path,System.Single,Stride.Core.Mathematics.Vector3,System.Boolean,System.Boolean)">
+            <param name="model">The loaded model. Null while no file is set.</param>
+            <param name="texcoordCount">The number of UV sets found in the file. Stride uses at most 10 of them.</param>
+            <param name="path">The .gltf or .glb file.</param>
+            <param name="importScale">Scale applied to all positions.</param>
+            <param name="pivotPosition">Subtracted from all positions before the scale.</param>
+            <param name="mergeMeshes">Combines primitives with the same material and vertex layout into one mesh.</param>
+            <param name="reload">Loads the file again.</param>
+        </member>
     </members>
 </doc>
