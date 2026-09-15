@@ -22,25 +22,33 @@ public static class ModelBuilder
         var boundingBox = BoundingBox.Empty;
         var boundingSphere = default(BoundingSphere);
 
-        for (var i = 0; i < geometries.Count; i++)
+        try
         {
-            var geometry = geometries[i];
-            model.Add(CreateMesh(device, geometry));
-
-            if (i == 0)
+            for (var i = 0; i < geometries.Count; i++)
             {
-                boundingBox = geometry.BoundingBox;
-                boundingSphere = geometry.BoundingSphere;
-                continue;
+                var geometry = geometries[i];
+                model.Add(CreateMesh(device, geometry));
+
+                if (i == 0)
+                {
+                    boundingBox = geometry.BoundingBox;
+                    boundingSphere = geometry.BoundingSphere;
+                    continue;
+                }
+
+                var box = geometry.BoundingBox;
+                BoundingBox.Merge(ref boundingBox, ref box, out var mergedBox);
+                boundingBox = mergedBox;
+
+                var sphere = geometry.BoundingSphere;
+                BoundingSphere.Merge(ref boundingSphere, ref sphere, out var mergedSphere);
+                boundingSphere = mergedSphere;
             }
-
-            var box = geometry.BoundingBox;
-            BoundingBox.Merge(ref boundingBox, ref box, out var mergedBox);
-            boundingBox = mergedBox;
-
-            var sphere = geometry.BoundingSphere;
-            BoundingSphere.Merge(ref boundingSphere, ref sphere, out var mergedSphere);
-            boundingSphere = mergedSphere;
+        }
+        catch
+        {
+            ReleaseGraphicsResources(model);
+            throw;
         }
 
         model.BoundingBox = boundingBox;
@@ -78,18 +86,26 @@ public static class ModelBuilder
         var vertexBinding = new VertexBufferBinding(vertexBuffer, geometry.Declaration, geometry.VertexCount);
 
         IndexBufferBinding indexBinding;
-        if (geometry.VertexCount <= ushort.MaxValue)
+        try
         {
-            var indices = new ushort[geometry.Indices.Length];
-            for (var i = 0; i < indices.Length; i++)
-                indices[i] = (ushort)geometry.Indices[i];
+            if (geometry.VertexCount <= ushort.MaxValue)
+            {
+                var indices = new ushort[geometry.Indices.Length];
+                for (var i = 0; i < indices.Length; i++)
+                    indices[i] = (ushort)geometry.Indices[i];
 
-            indexBinding = new IndexBufferBinding(Buffer.Index.New(device, indices).RecreateWith(indices), false, indices.Length);
+                indexBinding = new IndexBufferBinding(Buffer.Index.New(device, indices).RecreateWith(indices), false, indices.Length);
+            }
+            else
+            {
+                var indices = geometry.Indices;
+                indexBinding = new IndexBufferBinding(Buffer.Index.New(device, indices).RecreateWith(indices), true, indices.Length);
+            }
         }
-        else
+        catch
         {
-            var indices = geometry.Indices;
-            indexBinding = new IndexBufferBinding(Buffer.Index.New(device, indices).RecreateWith(indices), true, indices.Length);
+            vertexBuffer.Dispose();
+            throw;
         }
 
         var meshDraw = new MeshDraw
