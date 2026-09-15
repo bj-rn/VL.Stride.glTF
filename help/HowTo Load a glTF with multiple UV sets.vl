@@ -70,7 +70,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="GLTFHELPAsset000000001" Comment="Asset" Bounds="380,715,199,15" ShowValueBox="true" isIOBox="true" Value="UVChecker.png">
+          <Pad Id="GLTFHELPAsset000000001" Comment="Asset" Bounds="380,715,206,15" ShowValueBox="true" isIOBox="true" Value="UVChecker.png">
             <p:TypeAnnotation LastCategoryFullName="System.Help" LastDependency="VL.HelpAssets.vl">
               <Choice Kind="TypeFlag" Name="ImageAsset" />
             </p:TypeAnnotation>
@@ -271,7 +271,7 @@
             <Pin Id="GLTFHELPAsyncPath00001" Name="Path" Kind="InputPin" />
             <Pin Id="GLTFHELPAsyncScale0001" Name="Import Scale" Kind="InputPin" />
             <Pin Id="GLTFHELPAsyncPivot0001" Name="Pivot Position" Kind="InputPin" />
-            <Pin Id="GLTFHELPAsyncMerge0001" Name="Merge Meshes" Kind="InputPin" />
+            <Pin Id="T3hwtS4CpE9Nm5RV1U9t8b" Name="Merge Meshes" Kind="InputPin" />
             <Pin Id="GLTFHELPAsyncReload001" Name="Reload" Kind="InputPin" />
             <Pin Id="GLTFHELPAsyncModel0001" Name="Model" Kind="OutputPin" />
             <Pin Id="GLTFHELPAsyncCount0001" Name="Texcoord Count" Kind="OutputPin" />

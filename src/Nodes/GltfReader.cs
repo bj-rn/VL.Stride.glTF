@@ -1,6 +1,7 @@
 using Stride.Core.Mathematics;
 using VL.Core;
 using VL.Core.Import;
+using VL.Model;
 using VL.Stride.glTF.Core;
 using Path = VL.Lib.IO.Path;
 using StrideModel = Stride.Rendering.Model;
@@ -29,7 +30,7 @@ public sealed class GltfReader : IDisposable
     /// <param name="mergeMeshes">Combines primitives with the same material and vertex layout into one mesh.</param>
     /// <param name="reload">Loads the file again.</param>
     public void Update(out StrideModel? model, out int texcoordCount, Path? path,
-        float importScale = 1f, Vector3 pivotPosition = default, bool mergeMeshes = true,
+        float importScale = 1f, Vector3 pivotPosition = default, [Pin(Visibility = PinVisibility.Optional)] bool mergeMeshes = true,
         bool reload = false)
     {
         var currentPath = path?.Value;
