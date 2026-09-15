@@ -16,6 +16,20 @@
         <member name="P:VL.Stride.glTF.Core.GltfGeometry.TexCoordCountInFile">
             <summary>The number of TEXCOORD_n keys in the file, before the limit of 10 is applied.</summary>
         </member>
+        <member name="T:VL.Stride.glTF.Core.GltfLoader">
+            <summary>Reads the triangle geometry of a glTF or glb file into <see cref="T:VL.Stride.glTF.Core.GltfGeometry"/> objects.</summary>
+        </member>
+        <member name="M:VL.Stride.glTF.Core.GltfLoader.Load(System.String,System.Single,Stride.Core.Mathematics.Vector3)">
+            <summary>Loads every triangle primitive of the default scene, in node order.</summary>
+            <param name="path">The path of the .gltf or .glb file.</param>
+            <param name="importScale">The factor that scales the positions after the pivot is subtracted.</param>
+            <param name="pivotPosition">The world space point that becomes the origin.</param>
+            <exception cref="T:System.IO.FileNotFoundException">The path is empty or the file does not exist.</exception>
+            <exception cref="T:System.IO.InvalidDataException">A triangle primitive has no POSITION attribute.</exception>
+        </member>
+        <member name="M:VL.Stride.glTF.Core.GltfLoader.GenerateNormals(Stride.Core.Mathematics.Vector3[],SharpGLTF.Schema2.MeshPrimitive)">
+            <summary>Computes area weighted vertex normals from the untransformed positions and the glTF winding.</summary>
+        </member>
         <member name="T:VL.Stride.glTF.Core.VertexLayout">
             <summary>Builds the vertex declaration and the interleaved vertex buffer of a glTF primitive.</summary>
         </member>
