@@ -7,7 +7,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>VL.Stride.glTF</id>
-    <version>0.1.0-alpha</version>
+    <version>0.1.0</version>
     <title>VL.Stride.glTF</title>
     <authors>bj-rn</authors>
     <owners>bj-rn</owners>
@@ -17,8 +17,8 @@
     <icon>icon\nugeticon.png</icon>
     <projectUrl>https://github.com/bj-rn/VL.Stride.glTF</projectUrl>
     <repository type="git" url="https://github.com/bj-rn/VL.Stride.glTF.git" />
-    <summary>Load glTF models with every UV set into VL.Stride</summary>
-    <description>Loads glTF 2.0 models into VL.Stride with every UV set the file contains, up to the Stride limit of 10 sets.</description>
+    <summary>Load glTF models into VL.Stride</summary>
+    <description>Loads glTF 2.0 models into VL.Stride</description>
     <copyright>Copyright 2026 bj-rn</copyright>
     <tags>VL, vvvv, stride, gltf, glb, model, mesh, uv</tags>
     <dependencies>
