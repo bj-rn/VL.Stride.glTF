@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Keep in sync with deployment\VL.Stride.glTF.nuspec -->
+    <Version>0.1.0</Version>
+    <OutputPath>..\lib\net10.0\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- vvvv reads pin and node tooltips from the XML documentation file -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SharpGLTF.Core" Version="[1.0.7]" GeneratePathProperty="true" />
+    <PackageReference Include="Stride.Core.Mathematics" Version="4.3.0.2507" />
+    <PackageReference Include="Stride.Engine" Version="4.3.0.2507" />
+    <PackageReference Include="Stride.Games" Version="4.3.0.2507" />
+    <PackageReference Include="Stride.Graphics" Version="4.3.0.2507" />
+    <PackageReference Include="Stride.Rendering" Version="4.3.0.2507" />
+    <PackageReference Include="VL.Core" Version="2026.8.0-0123-gdc6ede5082" />
+    <PackageReference Include="VL.CoreLib" Version="2026.8.0-0123-gdc6ede5082" />
+  </ItemGroup>
+
+  <!--
+    vvvv does not bundle SharpGLTF.Core, so the assembly must sit next to
+    VL.Stride.glTF.dll for source-repository development (NuGet installs
+    additionally get it via the nuspec dependency).
+  -->
+  <Target Name="CopySharpGLTF" AfterTargets="Build">
+    <Copy SourceFiles="$(PkgSharpGLTF_Core)\lib\net10.0\SharpGLTF.Core.dll"
+          DestinationFolder="$(OutputPath)"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>

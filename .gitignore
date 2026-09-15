@@ -8,4 +8,4 @@ obj/
 bin/
 
 .vl/
-/lib/
+lib/**/*.pdb
