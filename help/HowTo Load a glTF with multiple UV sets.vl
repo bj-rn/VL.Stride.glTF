@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Document xmlns:p="property" xmlns:r="reflection" Id="GLTFHELPDoc00000000001" LanguageVersion="2026.8.0" Version="0.128">
   <NugetDependency Id="GLTFHELPDepCoreLib0001" Location="VL.CoreLib" Version="2026.8.0" />
   <NugetDependency Id="GLTFHELPDepStride00001" Location="VL.Stride" Version="2026.8.0" />
@@ -112,7 +112,7 @@
             <Pin Id="GLTFHELPMatTc000000001" Name="Texcoord Index" Kind="InputPin" DefaultValue="Texcoord0" />
             <Pin Id="GLTFHELPMatOut00000001" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="100,460,145,19" Id="GLTFHELPEntity00000001">
+          <Node Bounds="100,560,145,19" Id="GLTFHELPEntity00000001">
             <p:NodeReference LastCategoryFullName="Stride.Models" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="ModelEntity" />
@@ -121,14 +121,14 @@
             <Pin Id="GLTFHELPEntityMat00001" Name="Material" Kind="InputPin" />
             <Pin Id="GLTFHELPEntityEnt00001" Name="Entity" Kind="OutputPin" />
           </Node>
-          <Node Bounds="500,460,185,19" Id="GLTFHELPLight000000001">
+          <Node Bounds="500,560,185,19" Id="GLTFHELPLight000000001">
             <p:NodeReference LastCategoryFullName="Stride.Lights" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="DirectionalLight" />
             </p:NodeReference>
             <Pin Id="GLTFHELPLightEnt000001" Name="Entity" Kind="OutputPin" />
           </Node>
-          <Node Bounds="100,530,546,19" Id="GLTFHELPRoot0000000001">
+          <Node Bounds="100,630,546,19" Id="GLTFHELPRoot0000000001">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
@@ -138,7 +138,7 @@
             <Pin Id="GLTFHELPRootChild00002" Name="Child 2" Kind="InputPin" />
             <Pin Id="GLTFHELPRootOut0000001" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="100,600,245,19" Id="GLTFHELPWin00000000001">
+          <Node Bounds="100,700,245,19" Id="GLTFHELPWin00000000001">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
@@ -150,7 +150,7 @@
             </Pin>
             <Pin Id="GLTFHELPWinInput000001" Name="Input" Kind="InputPin" />
           </Node>
-          <Pad Id="GLTFHELPNote0000000005" Bounds="100,700,600,41" ShowValueBox="true" isIOBox="true" Value="GltfReader (Async) loads the file on a background thread. It outputs the last loaded model while a new file loads. Use it for large files, so the frame does not stall.">
+          <Pad Id="GLTFHELPNote0000000006" Bounds="100,330,380,41" ShowValueBox="true" isIOBox="true" Value="MeshDescription lists the vertex elements of the first mesh. Tex2 is TEXCOORD, Tex12 is TEXCOORD1, Tex82 is TEXCOORD8. Each one is a UV set with 2 floats.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -159,7 +159,45 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Node Bounds="100,760,165,19" Id="GLTFHELPAsync000000001">
+          <Node Bounds="100,385,65,19" Id="GLTFHELPMeshes00000001">
+            <p:NodeReference LastCategoryFullName="Stride.API.Rendering.Model" LastDependency="VL.Stride.Runtime.TypeForwards.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="Meshes" />
+              <CategoryReference Kind="ClassType" Name="Model" NeedsToBeDirectParent="true" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPMeshesIn000001" Name="Input" Kind="StateInputPin" />
+            <Pin Id="GLTFHELPMeshesOut00001" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="GLTFHELPMeshesList0001" Name="Meshes" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="100,425,95,19" Id="GLTFHELPFirst000000001">
+            <p:NodeReference LastCategoryFullName="Collections.Sequence" LastDependency="VL.Collections.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="FirstOrDefault" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPFirstIn0000001" Name="Input" Kind="StateInputPin" />
+            <Pin Id="GLTFHELPFirstDef000001" Name="Default Value" Kind="InputPin" />
+            <Pin Id="GLTFHELPFirstOut000001" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="GLTFHELPFirstRes000001" Name="Result" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="100,465,98,19" Id="GLTFHELPDesc0000000001">
+            <p:NodeReference LastCategoryFullName="Stride.Models.Meshes" LastDependency="VL.Stride.Rendering.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="MeshDescription" />
+            </p:NodeReference>
+            <Pin Id="GLTFHELPDescIn00000001" Name="Input" Kind="InputPin" />
+            <Pin Id="GLTFHELPDescVtx0000001" Name="Vertex Description" Kind="OutputPin" />
+          </Node>
+          <Pad Id="GLTFHELPPadVtx00000001" Comment="Vertex Description" Bounds="300,465,380,60" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="GLTFHELPNote0000000005" Bounds="100,800,600,41" ShowValueBox="true" isIOBox="true" Value="GltfReader (Async) loads the file on a background thread. It outputs the last loaded model while a new file loads. Use it for large files, so the frame does not stall.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="100,860,165,19" Id="GLTFHELPAsync000000001">
             <p:NodeReference LastCategoryFullName="Stride.Models" LastDependency="VL.Stride.glTF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="GltfReader (Async)" />
@@ -174,12 +212,12 @@
             <Pin Id="GLTFHELPAsyncCount0001" Name="Texcoord Count" Kind="OutputPin" />
             <Pin Id="GLTFHELPAsyncLoad00001" Name="Is Loading" Kind="OutputPin" />
           </Node>
-          <Pad Id="GLTFHELPAsyncCnt000001" Comment="Texcoord Count" Bounds="300,810,60,15" ShowValueBox="true" isIOBox="true">
+          <Pad Id="GLTFHELPAsyncCnt000001" Comment="Texcoord Count" Bounds="300,910,60,15" ShowValueBox="true" isIOBox="true">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Integer32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="GLTFHELPAsyncLd0000001" Comment="Is Loading" Bounds="400,810,60,15" ShowValueBox="true" isIOBox="true">
+          <Pad Id="GLTFHELPAsyncLd0000001" Comment="Is Loading" Bounds="400,910,60,15" ShowValueBox="true" isIOBox="true">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
@@ -203,9 +241,11 @@
         <Link Id="GLTFHELPLink0000000011" Ids="GLTFHELPPath0000000001,GLTFHELPAsyncPath00001" />
         <Link Id="GLTFHELPLink0000000012" Ids="GLTFHELPAsyncCount0001,GLTFHELPAsyncCnt000001" />
         <Link Id="GLTFHELPLink0000000013" Ids="GLTFHELPAsyncLoad00001,GLTFHELPAsyncLd0000001" />
+        <Link Id="GLTFHELPLink0000000014" Ids="GLTFHELPGltfModel00001,GLTFHELPMeshesIn000001" />
+        <Link Id="GLTFHELPLink0000000015" Ids="GLTFHELPMeshesList0001,GLTFHELPFirstIn0000001" />
+        <Link Id="GLTFHELPLink0000000016" Ids="GLTFHELPFirstRes000001,GLTFHELPDescIn00000001" />
+        <Link Id="GLTFHELPLink0000000017" Ids="GLTFHELPDescVtx0000001,GLTFHELPPadVtx00000001" />
       </Patch>
     </Node>
   </Patch>
 </Document>
-
-
