@@ -38,6 +38,19 @@
         <member name="M:VL.Stride.glTF.Core.GltfLoader.GenerateNormals(Stride.Core.Mathematics.Vector3[],SharpGLTF.Schema2.MeshPrimitive)">
             <summary>Computes area weighted vertex normals from the untransformed positions and the glTF winding.</summary>
         </member>
+        <member name="T:VL.Stride.glTF.Core.ModelBuilder">
+            <summary>Builds a Stride model with GPU buffers from <see cref="T:VL.Stride.glTF.Core.GltfGeometry"/> objects.</summary>
+        </member>
+        <member name="M:VL.Stride.glTF.Core.ModelBuilder.Build(Stride.Graphics.GraphicsDevice,System.Collections.Generic.IReadOnlyList{VL.Stride.glTF.Core.GltfGeometry})">
+            <summary>Creates one mesh per geometry and returns the model.</summary>
+            <remarks>The model owns the GPU buffers. The caller must call <see cref="M:VL.Stride.glTF.Core.ModelBuilder.ReleaseGraphicsResources(Stride.Rendering.Model)"/> when the model is no longer used.</remarks>
+            <param name="device">The graphics device that creates the buffers.</param>
+            <param name="geometries">The geometries to upload.</param>
+        </member>
+        <member name="M:VL.Stride.glTF.Core.ModelBuilder.ReleaseGraphicsResources(Stride.Rendering.Model)">
+            <summary>Disposes the vertex buffers and the index buffers of every mesh of the model.</summary>
+            <param name="model">The model to release. A null model does nothing.</param>
+        </member>
         <member name="T:VL.Stride.glTF.Core.VertexLayout">
             <summary>Builds the vertex declaration and the interleaved vertex buffer of a glTF primitive.</summary>
         </member>
