@@ -39,6 +39,8 @@ Shared pins:
 
 `GltfReader (Async)` has one more output: `Is Loading`. It is true while a file loads in the background.
 
+Reload on GltfReader loads the file on every frame where the pin is true, like ModelReader. Reload on GltfReader (Async) loads once per rising edge. Use a Bang IOBox for both.
+
 ## UV sets in Stride
 
 Use a UV set of a loaded model like this:
@@ -55,6 +57,7 @@ Use a UV set of a loaded model like this:
 - Positions are not axis converted. Both systems are right handed and Y up.
 - Import Scale and Pivot Position apply as `p' = (world * p - pivot) * scale`. This matches the Stride importer.
 - Normals are transformed with the inverse transpose of the world matrix, then normalized.
+- Tangents are transformed the same way, with the inverse transpose, then normalized. This matches the Stride importer. The handedness in W is negated for a mirrored node.
 - A primitive without normals gets area weighted vertex normals.
 
 Vertex layout: POSITION, NORMAL, TEXCOORD0 to TEXCOORDn, COLOR (when COLOR_0 exists in the file), TANGENT (float4, when TANGENT exists in the file). All elements are float. The index buffer is 16 bit when the vertex count fits, otherwise 32 bit.
@@ -79,7 +82,7 @@ Run the unit tests:
 
     dotnet test src/tests/VL.Stride.glTF.Tests/VL.Stride.glTF.Tests.csproj
 
-This runs 31 tests. Most tests use synthetic glTF files written with SharpGLTF.Toolkit. A few tests use the real Blender export in `src/tests/assets`.
+Most tests use synthetic glTF files written with SharpGLTF.Toolkit. A few tests use the real Blender export in `src/tests/assets`.
 
 The fixture `VlDocumentTests` compiles the .vl documents against a vvvv installation, with VL.TestFramework. It is marked Explicit, because the vvvv 8.0 preview test host cannot resolve the VL.Skia version inside the shipped VL.Stride.Windows document. Run it on its own:
 
