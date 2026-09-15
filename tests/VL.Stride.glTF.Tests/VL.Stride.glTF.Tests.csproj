@@ -12,6 +12,9 @@
     <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
     <PackageReference Include="SharpGLTF.Toolkit" Version="[1.0.7]" />
+    <PackageReference Include="VL.TestFramework" Version="2026.8.0-0123-gdc6ede5082" />
+    <!-- Runtime deps of the VL platform. The deps.json of vvvv.exe does not supply them in a test process -->
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\VL.Stride.glTF.csproj" />
