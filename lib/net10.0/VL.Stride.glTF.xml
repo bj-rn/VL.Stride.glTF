@@ -4,6 +4,18 @@
         <name>VL.Stride.glTF</name>
     </assembly>
     <members>
+        <member name="M:VL.Stride.glTF.Core.BackgroundComputation`1.Poll(System.Int32,`0@,System.Boolean@,System.Boolean@)">
+            <summary>
+            Processes a completed task (if any) and reports the current state for the given
+            input hash. Returns true when the caller adopted a fresh result this call. When
+            <paramref name="needsStart"/> is true, the caller must call <see cref="M:VL.Stride.glTF.Core.BackgroundComputation`1.Start(System.Int32,System.Func{`0})"/>
+            with work that matches <paramref name="inputHash"/>. Throws a pending fault again
+            for the current inputs.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.glTF.Core.BackgroundComputation`1.Start(System.Int32,System.Func{`0})">
+            <summary>Starts the background work for the given input hash.</summary>
+        </member>
         <member name="T:VL.Stride.glTF.Core.GeometryMerger">
             <summary>Joins geometries that share the material and the vertex declaration into one geometry.</summary>
         </member>
