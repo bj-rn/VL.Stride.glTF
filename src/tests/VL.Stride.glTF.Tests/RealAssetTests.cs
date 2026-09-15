@@ -45,11 +45,15 @@ public class RealAssetTests
             Assert.That(geometry.Vertices.Length, Is.EqualTo(geometry.VertexCount * geometry.Declaration.VertexStride));
         }
 
+        // Independent check: the highest UV set count of any primitive in the file
+        // must match the highest UV set count of any loaded geometry.
         var model = ModelRoot.Load(path);
-        var firstPrimitive = model.LogicalMeshes[0].Primitives[0];
-        var uvKeyCount = firstPrimitive.VertexAccessors.Keys.Count(key => key.StartsWith("TEXCOORD_", StringComparison.Ordinal));
+        var maxUvKeyCount = model.LogicalMeshes
+            .SelectMany(mesh => mesh.Primitives)
+            .Max(primitive => primitive.VertexAccessors.Keys.Count(key => key.StartsWith("TEXCOORD_", StringComparison.Ordinal)));
+        var maxTexCoordCountInFile = geometries.Max(geometry => geometry.TexCoordCountInFile);
 
-        Assert.That(uvKeyCount, Is.EqualTo(geometries[0].TexCoordCountInFile));
+        Assert.That(maxUvKeyCount, Is.EqualTo(maxTexCoordCountInFile));
     }
 
     [Test]
