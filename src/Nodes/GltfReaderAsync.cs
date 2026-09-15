@@ -12,7 +12,7 @@ namespace VL.Stride.glTF.Nodes;
 public sealed class GltfReaderAsync : IDisposable
 {
     private readonly GameServices services;
-    private readonly BackgroundComputation<List<GltfGeometry>> computation = new();
+    private BackgroundComputation<List<GltfGeometry>>? computation;
     private StrideModel? cachedModel;
     private int cachedTexcoordCount;
     private int reloadCount;
@@ -46,6 +46,9 @@ public sealed class GltfReaderAsync : IDisposable
             cachedModel = null;
             cachedTexcoordCount = 0;
 
+            // Drop the last result, so the same path loads again later.
+            computation = null;
+
             model = null;
             texcoordCount = 0;
             isLoading = false;
@@ -54,6 +57,7 @@ public sealed class GltfReaderAsync : IDisposable
 
         var hash = HashCode.Combine(currentPath, importScale, pivotPosition, mergeMeshes, reloadCount);
 
+        computation ??= new();
         var adopted = computation.Poll(hash, out var result, out var needsStart, out isLoading);
         if (needsStart)
         {
