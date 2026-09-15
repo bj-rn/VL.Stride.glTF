@@ -1,10 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="EWHWcwf3oBvPnhn254YyBa" LanguageVersion="2026.8.0" Version="0.128">
-  <NugetDependency Id="IlV2uuvFO0IBfzNGVQq0yg" Location="VL.CoreLib" Version="2026.8.0" />
-  <NugetDependency Id="jZQp04B9lWvo8zFm3tleB4" Location="VL.Stride" Version="2026.8.0" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="EWHWcwf3oBvPnhn254YyBa" LanguageVersion="2026.8.0-0123-gdc6ede5082" Version="0.128">
+  <NugetDependency Id="IlV2uuvFO0IBfzNGVQq0yg" Location="VL.CoreLib" />
+  <NugetDependency Id="jZQp04B9lWvo8zFm3tleB4" Location="VL.Stride" />
   <PlatformDependency Id="ELNChI1WDVwxxh4bAxALzu" Location="./lib/net10.0/VL.Stride.glTF.dll" IsForward="true" />
   <Patch Id="Rgz0iK0cdl5O6XLZAnSI2k">
     <Canvas Id="EtMz6eWyJpjMOVOROl6714" DefaultCategory="VL.Stride.glTF" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
     <Node Name="Application" Bounds="100,100" Id="GzS10oTkIGnMGZknNaV2y2">
       <p:NodeReference>
         <Choice Kind="ContainerDefinition" Name="Process" />
