@@ -12,7 +12,7 @@ This library loads glTF 2.0 files into VL.Stride and keeps every UV set, up to 1
 Install via the vvvv package manager (`CTRL + F3`)
 
 
-See the [guide on managing NuGet packages](https://thegraybook.vvvv.org/reference/hde/managing-nugets.html) for details.
+See the [Packman](https://thegraybook.vvvv.org/reference/hde/packman.html) for details.
 
 The help patch `HowTo Load a glTF with multiple UV sets` is in the Help Browser.
 
